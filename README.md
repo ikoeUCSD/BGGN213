@@ -3,3 +3,4 @@ Classwork for [Bioinformatics Class at UC San Diego](https://bioboot.github.io/b
 
 ## Class Content
 - Class 11: [Stuff](<Class11Lab/Class 11 Lab.md>)
+- Class 12: [Other Stuff](<Class12Lab/Class 12 Lab.md>)
