@@ -1,0 +1,117 @@
+"1","
+"
+"1","  Binaries will be installed
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/Biobase_2.69.0.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/BiocParallel_1.43.4.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/DelayedArray_0.35.2.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/GenomicRanges_1.61.1.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/IRanges_2.43.0.zip'
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/purrr_1.1.0.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/Rhtslib_3.5.0.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/S4Arrays_1.9.1.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/S4Vectors_0.47.0.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/SparseArray_1.9.1.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/XVector_0.49.0.zip'
+"
+"1","package ‘Biobase’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘BiocParallel’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘DelayedArray’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘GenomicRanges’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘IRanges’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘purrr’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘Rhtslib’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘S4Arrays’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘S4Vectors’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘SparseArray’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘XVector’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\ianmk\AppData\Local\Temp\RtmpKM1WWj\downloaded_packages"
+"1",""
+"1","
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/Seqinfo_1.0.0.tar.gz'
+"
+"2","Content type 'application/x-gzip'"
+"2"," length 254658 bytes (248 KB)
+"
+"2","downloaded 248 KB
+
+"
+"1","* installing *source* package 'Seqinfo' ...
+"
+"1","** this is package 'Seqinfo' version '1.0.0'
+"
+"1","** package 'Seqinfo' successfully unpacked and MD5 sums checked
+"
+"1","** using staged installation
+"
+"1","** R
+"
+"1","** inst
+"
+"1","** byte-compile and prepare package for lazy loading
+"
+"1","Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+"
+"1","  namespace 'S4Vectors' 0.47.0 is being loaded, but >= 0.47.6 is required
+"
+"1","Calls: <Anonymous> ... withCallingHandlers -> loadNamespace -> namespaceImport -> loadNamespace
+"
+"1","Execution halted
+"
+"1","ERROR: lazy loading failed for package 'Seqinfo'
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/Seqinfo'
+"
+"2","
+"
+"2",""
+"2","The downloaded source packages are in
+	‘C:\Users\ianmk\AppData\Local\Temp\RtmpKM1WWj\downloaded_packages’"
+"2",""
+"2","
+"
+"0","## === 6. Verify version ==="
+"0","cat(""\n🔎 Installed S4Vectors version:\n"")"
+"1","
+🔎 Installed S4Vectors version:
+"
+"0","print(packageVersion(""S4Vectors""))"
+"1","[1]"
+"1"," ‘0.47.0’"
+"1","
+"
+"0","## === 7. Test load ==="
+"0","cat(""\n🧪 Testing SummarizedExperiment...\n"")"
+"1","
+🧪 Testing SummarizedExperiment...
+"
+"0","library(SummarizedExperiment)"
+"2","Error in library(SummarizedExperiment) : 
+  there is no package called ‘SummarizedExperiment’
+"

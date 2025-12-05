@@ -1,0 +1,2 @@
+"0","# Get the results"
+"0","keggres = gage(foldchanges, gsets=kegg.sets.hs)"

@@ -1,0 +1,214 @@
+---
+title: "Class 12 Lab"
+format: gfm
+---
+
+```{r, message=FALSE}
+library(BiocManager)
+library(DESeq2)
+```
+
+```{r}
+counts <- read.csv("airway_scaledcounts.csv", row.names=1)
+metadata <-  read.csv("airway_metadata.csv")
+```
+
+> 1. How many genes are in this dataset
+
+```{r}
+nrow(counts)
+```
+38,694 genes
+
+> 2. How many control cell lines do we have?
+
+4 cell lines
+
+```{r}
+ncol(counts)
+sum(metadata$dex=="control")
+```
+
+1. Extract the "control" columns from `counts`
+2. Calculate the mean value for each gene in these "control" columns
+3-4. Do the same for the "treated" columns
+5. Compare the mean values for each gene
+
+>3. How would you make the above code in either approach more robust? Is there a function that could help here?
+
+rather than manually calculating, I would use the `mean()` function
+
+control <- metadata[metadata[,"dex"]=="control",]
+control.mean <- mean( counts[ ,control$id] ) 
+
+> 4.
+
+treated <- metadata[metadata[,"dex"]=="treated",]
+treated.mean <- mean( counts[ ,treated$id] ) 
+
+```{r}
+control <- metadata[metadata[,"dex"]=="control",]
+control.counts <- counts[ ,control$id]
+control.mean <- rowSums( control.counts )/4 
+head(control.mean)
+```
+```{r}
+treated <- metadata[metadata[,"dex"]=="treated",]
+treated.counts <- counts[ ,treated$id]
+treated.mean <- rowSums( treated.counts )/4 
+head(treated.mean)
+```
+
+```{r}
+meancounts <- data.frame(control.mean, treated.mean)
+```
+
+>5. 
+
+```{r}
+plot(meancounts[,1],meancounts[,2], xlab="Control", ylab="Treated")
+```
+> Q5.
+
+I would use geom_point to do this with ggplot2
+
+> Q6.
+
+```{r}
+plot(log(meancounts[,1]),log(meancounts[,2]), xlab="Control", ylab="Treated", main='Log-Log Plot')
+```
+
+A common "rule-of-thumb"
+log2fold change is greater than 2
+
+We need to remove the 0 and NaN values from the dataset because they hinder data analysis
+
+```{r}
+meancounts$log2fc <- log2(meancounts[,"treated.mean"]/meancounts[,"control.mean"])
+head(meancounts)
+```
+ We need to remove the 0 and nan values
+ 
+> Q7. 
+The arr.ind=TRUE argument will cause which() to return both the row and column indices for TRUE for zero counts. Calling unique() will ensures we dont count twice
+
+```{r}
+zero.vals <- which(meancounts[,1:2]==0, arr.ind=TRUE)
+
+to.rm <- unique(zero.vals[,1])
+mygenes <- meancounts[-to.rm,]
+head(mygenes)
+```
+
+> How may genes are up regulated at the +2 log2FC threshold?
+Q8. Using the up.ind vector above can you determine how many up regulated genes we have at the greater than 2 fc level? 
+Q9. Using the down.ind vector above can you determine how many down regulated genes we have at the greater than 2 fc level? 
+
+```{r}
+up.ind <- mygenes$log2fc > 2
+down.ind <- mygenes$log2fc < (-2)
+```
+
+> Q10. Do you trust these results? Why or why not?
+
+No, we have not evaluated the significance of any of these changes
+
+## deseq analysis
+Proper analysis
+
+
+DESeq2 wants 3 things for analysis
+1. countData
+2. colData
+3. design
+```{r}
+dds <- DESeqDataSetFromMatrix(counts, metadata, ~dex)
+```
+The main function in the DEQeq package to run analysis is called `DESeq()`
+```{r}
+dds <- DESeq(dds)
+```
+Getting Results `results()`
+```{r}
+res <- results(dds)
+head(res)
+```
+## Volcano Plot
+Log2FC vs padj
+```{r}
+plot(res$log2FoldChange, -log(res$padj))
+abline(v=c(-2, 2), col="red")
+abline(h=-log(0.05), col="red")
+```
+
+## Save Results
+```{r}
+write.csv(res, file="myresults.csv")
+```
+
+```{r}
+library(ggplot2)
+
+mycols <- rep("grey", nrow(res))
+mycols[abs(res$log2FoldChange)>2] <- "blue"
+mycols[res$padk >- 0.05] <- "grey"
+ggplot(res) + aes(log2FoldChange, -log(padj)) +geom_point(col=mycols)
+```
+
+
+## Adding Data Annotations
+ENSEMBL database IDs are in the `res` object --> use `mapIds()` function from bioconductor
+```{r}
+library("AnnotationDbi")
+library("org.Hs.eg.db")
+```
+
+```{r}
+res$symbol <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res), # Our genenames
+                     keytype="ENSEMBL",        # The format of our genenames
+                     column="SYMBOL",          # The new format we want to add
+                     multiVals="first")
+```
+```{r}
+head(res$symbol)
+```
+```{r}
+res$genename <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res), # Our genenames
+                     keytype="ENSEMBL",        # The format of our genenames
+                     column="GENENAME",          # The new format we want to add
+                     multiVals="first")
+```
+
+```{r}
+res$entrezid <- mapIds(org.Hs.eg.db,
+                     keys=row.names(res), # Our genenames
+                     keytype="ENSEMBL",        # The format of our genenames
+                     column="ENTREZID",          # The new format we want to add
+                     multiVals="first")
+```
+##Pathway Analysis
+**gage** function in R
+```{r}
+library(gage)
+library(gageData)
+library(pathview)
+```
+
+**gage** wants an input as a named vector of importance (labeled fold changes)
+```{r}
+foldchanges <- res$log2FoldChange
+data(kegg.sets.hs)
+names(foldchanges) = res$entrezid
+```
+```{r}
+keggres = gage(foldchanges, gsets=kegg.sets.hs)
+```
+```{r}
+pathview(gene.data=foldchanges, pathway.id="hsa05310")
+```
+
+
+
+

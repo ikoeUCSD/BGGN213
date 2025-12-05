@@ -1,0 +1,5 @@
+"0","zero.vals <- which(meancounts[,1:2]==0, arr.ind=TRUE)"
+"0",""
+"0","to.rm <- unique(zero.vals[,1])"
+"0","mygenes <- meancounts[-to.rm,]"
+"0","head(mygenes)"

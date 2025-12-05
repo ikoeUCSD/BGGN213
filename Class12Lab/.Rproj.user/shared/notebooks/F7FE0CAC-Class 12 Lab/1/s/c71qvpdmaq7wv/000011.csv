@@ -1,0 +1,1 @@
+"0","plot(log(meancounts[,1]),log(meancounts[,2]), xlab=""Control"", ylab=""Treated"", main='Log-Log Plot')"

@@ -1,0 +1,6 @@
+"0","library(ggplot2)"
+"0",""
+"0","mycols <- rep(""grey"", nrow(res))"
+"0","mycols[abs(res$log2FoldChange)>2] <- ""blue"""
+"0","mycols[res$padk >- 0.05] <- ""grey"""
+"0","ggplot(res) + aes(log2FoldChange, -log(padj)) +geom_point(col=mycols)"

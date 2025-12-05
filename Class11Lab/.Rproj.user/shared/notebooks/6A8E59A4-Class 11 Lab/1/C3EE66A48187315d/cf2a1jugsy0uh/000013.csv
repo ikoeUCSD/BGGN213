@@ -1,0 +1,277 @@
+"0","remove_old_S4Vectors <- function() {"
+"0","  cat(""🔍 Searching for old S4Vectors installations...\n"")"
+"0","  all_pkgs <- installed.packages()"
+"0","  s4v_rows <- grep(""^S4Vectors$"", rownames(all_pkgs))"
+"0","  if (length(s4v_rows)) {"
+"0","    paths <- unique(all_pkgs[s4v_rows, ""LibPath""])"
+"0","    for (p in paths) {"
+"0","      cat(""🧹 Removing S4Vectors from:"", p, ""\n"")"
+"0","      try(remove.packages(""S4Vectors"", lib = p), silent = TRUE)"
+"0","      s4path <- file.path(p, ""S4Vectors"")"
+"0","      if (dir.exists(s4path)) {"
+"0","        unlink(s4path, recursive = TRUE, force = TRUE)"
+"0","        cat(""✅ Deleted:"", s4path, ""\n"")"
+"0","      }"
+"0","    }"
+"0","  } else {"
+"0","    cat(""✅ No installed S4Vectors found.\n"")"
+"0","  }"
+"0","}"
+"0",""
+"0","remove_old_S4Vectors()"
+"1","🔍 Searching for old S4Vectors installations...
+"
+"1","✅ No installed S4Vectors found.
+"
+"0","## === 2. Reset Bioconductor ==="
+"0","if (!requireNamespace(""BiocManager"", quietly = TRUE))"
+"0","  install.packages(""BiocManager"")"
+"0",""
+"0","BiocManager::install(version = ""3.22"")"
+"1","Update all/some/none? [a/s/n]: "
+"0","n"
+"0","options(BioC_mirror = ""https://bioconductor.org"")"
+"0",""
+"0","## === 3. Make sure Rtools (for source build) is ready ==="
+"0","if (!requireNamespace(""pkgbuild"", quietly = TRUE))"
+"0","  install.packages(""pkgbuild"")"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/desc_1.4.3.zip'
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/pkgbuild_1.4.8.zip'
+"
+"1","package ‘desc’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘pkgbuild’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\ianmk\AppData\Local\Temp\RtmpKM1WWj\downloaded_packages"
+"1",""
+"1","
+"
+"0","if (!pkgbuild::find_rtools()) {"
+"0","  message(""\n⚠️  You need Rtools to build from source. Install from:\n"","
+"0","          ""https://cran.r-project.org/bin/windows/Rtools/\n"","
+"0","          ""Then restart R and rerun this script.\n"")"
+"0","}"
+"0",""
+"0","## === 4. Force install S4Vectors from source ==="
+"0","BiocManager::install(""S4Vectors"", type = ""source"", ask = FALSE, update = TRUE)"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/S4Vectors_0.48.0.tar.gz'
+"
+"2","Content type 'application/x-gzip'"
+"2"," length 843897 bytes (824 KB)
+"
+"2","downloaded 824 KB
+
+"
+"1","* installing *source* package 'S4Vectors' ...
+"
+"1","** this is package 'S4Vectors' version '0.48.0'
+"
+"1","** package 'S4Vectors' successfully unpacked and MD5 sums checked
+"
+"1","** using staged installation
+"
+"1","** libs
+"
+"1","Error in system(paste(MAKE, p1(paste(""-f"", shQuote(makefiles))), ""compilers""),  : 
+"
+"1","  'make' not found
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/S4Vectors'
+"
+"2","
+"
+"2",""
+"2","The downloaded source packages are in
+	‘C:\Users\ianmk\AppData\Local\Temp\RtmpKM1WWj\downloaded_packages’"
+"2",""
+"2","
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/S4Vectors_0.48.0.tar.gz'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/Biobase_2.70.0.tar.gz'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/BiocParallel_1.44.0.tar.gz'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/DelayedArray_0.36.0.tar.gz'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/IRanges_2.44.0.tar.gz'
+"
+"2","trying URL 'https://cran.rstudio.com/src/contrib/purrr_1.2.0.tar.gz'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/Rhtslib_3.6.0.tar.gz'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/S4Arrays_1.10.0.tar.gz'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/SparseArray_1.10.1.tar.gz'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/XVector_0.50.0.tar.gz'
+"
+"1","* installing *source* package 'S4Vectors' ...
+"
+"1","** this is package 'S4Vectors' version '0.48.0'
+"
+"1","** package 'S4Vectors' successfully unpacked and MD5 sums checked
+"
+"1","** using staged installation
+"
+"1","** libs
+"
+"1","Error in system(paste(MAKE, p1(paste(""-f"", shQuote(makefiles))), ""compilers""),  : 
+"
+"1","  'make' not found
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/S4Vectors'
+"
+"1","* installing *source* package 'Biobase' ...
+"
+"1","** this is package 'Biobase' version '2.70.0'
+"
+"1","** package 'Biobase' successfully unpacked and MD5 sums checked
+"
+"1","** using staged installation
+"
+"1","** libs
+"
+"1","Error in system(paste(MAKE, p1(paste(""-f"", shQuote(makefiles))), ""compilers""),  : 
+"
+"1","  'make' not found
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/Biobase'
+"
+"1","* restoring previous 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/Biobase'
+"
+"1","* installing *source* package 'BiocParallel' ...
+"
+"1","** this is package 'BiocParallel' version '1.44.0'
+"
+"1","** package 'BiocParallel' successfully unpacked and MD5 sums checked
+"
+"1","** using staged installation
+"
+"1","
+"
+"1","   **********************************************
+"
+"1","   WARNING: this package has a configure script
+"
+"1","         It probably needs manual configuration
+"
+"1","   **********************************************
+"
+"1","
+"
+"1","
+"
+"1","** libs
+"
+"1","Error in system(paste(MAKE, p1(paste(""-f"", shQuote(makefiles))), ""compilers""),  : 
+"
+"1","  'make' not found
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/BiocParallel'
+"
+"1","* restoring previous 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/BiocParallel'
+"
+"1","* installing *source* package 'purrr' ...
+"
+"1","** this is package 'purrr' version '1.2.0'
+"
+"1","** package 'purrr' successfully unpacked and MD5 sums checked
+"
+"1","** using staged installation
+"
+"1","** libs
+"
+"1","Error in system(paste(MAKE, p1(paste(""-f"", shQuote(makefiles))), ""compilers""),  : 
+"
+"1","  'make' not found
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/purrr'
+"
+"1","* restoring previous 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/purrr'
+"
+"1","* installing *source* package 'Rhtslib' ...
+"
+"1","** this is package 'Rhtslib' version '3.6.0'
+"
+"1","** package 'Rhtslib' successfully unpacked and MD5 sums checked
+"
+"1","** using non-staged installation via StagedInstall field
+"
+"1","** libs
+"
+"1","Error in system(paste(MAKE, p1(paste(""-f"", shQuote(makefiles))), ""compilers""),  : 
+"
+"1","  'make' not found
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/Rhtslib'
+"
+"1","* restoring previous 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/Rhtslib'
+"
+"1","ERROR: dependency 'S4Vectors' is not available for package 'IRanges'
+"
+"1","Perhaps try a variation of:
+"
+"1","install.packages('S4Vectors')
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/IRanges'
+"
+"1","ERROR: dependencies 'S4Vectors', 'IRanges' are not available for package 'S4Arrays'
+"
+"1","Perhaps try a variation of:
+"
+"1","install.packages(c('S4Vectors', 'IRanges'))
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/S4Arrays'
+"
+"1","ERROR: dependencies 'S4Vectors', 'IRanges' are not available for package 'XVector'
+"
+"1","Perhaps try a variation of:
+"
+"1","install.packages(c('S4Vectors', 'IRanges'))
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/XVector'
+"
+"1","ERROR: dependencies 'S4Vectors', 'S4Arrays', 'IRanges', 'XVector' are not available for package 'SparseArray'
+"
+"1","Perhaps try a variation of:
+"
+"1","install.packages(c('S4Vectors', 'S4Arrays', 'IRanges', 'XVector'))
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/SparseArray'
+"
+"1","ERROR: dependencies 'S4Vectors', 'IRanges', 'S4Arrays', 'SparseArray' are not available for package 'DelayedArray'
+"
+"1","Perhaps try a variation of:
+"
+"1","install.packages(c('S4Vectors', 'IRanges', 'S4Arrays', 'SparseArray'))
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/DelayedArray'
+"
+"2","
+"
+"2",""
+"2","The downloaded source packages are in
+	‘C:\Users\ianmk\AppData\Local\Temp\RtmpKM1WWj\downloaded_packages’"
+"2",""
+"2","
+"
+"0","## === 5. Reinstall dependencies ==="
+"0","BiocManager::install(c(""IRanges"", ""GenomicRanges"", ""SummarizedExperiment""),"
+"0","                     ask = FALSE, update = TRUE)"
+"1","
+"
+"1",""
+"1","  There are binary versions available but the source versions are later"
+"1",""
+"1",":
+"

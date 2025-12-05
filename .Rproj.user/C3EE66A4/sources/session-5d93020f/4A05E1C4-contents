@@ -1,0 +1,71 @@
+---
+title: "Class 11 Lab"
+author: "Ian Koe"
+format: gfm
+---
+
+## Background
+PDB has 209,886 Entries (Oct/Nov 2025)
+UniPortKB has 199,579,901 entries
+```{r}
+209886/199579901 * 100
+```
+PDB has only 0.1% coverage of the main sequence database
+
+## AlphaFold
+
+3 main outputs
+
+-predicted coordinates
+-local quality score
+-seocnd quality score PAE
+
+Run AlphaFold yourself if not happy with AFDB (no coverage, poor model)
+
+## Interpreting and Analyzing AF Results in R
+```{r}
+results_dir <- "Dimer_23119.result/Dimer_23119"
+pdb_files <- list.files(path=results_dir,
+                        pattern="*.pdb",
+                        full.names = TRUE)
+
+# Print our PDB file names
+basename(pdb_files)
+```
+
+```{r}
+library(bio3d)
+
+# Read all data from Models 
+#  and superpose/fit coords
+pdbs <- pdbaln(pdb_files, fit=TRUE, exefile="msa")
+```
+
+```{r}
+rd <- rmsd(pdbs, fit=T)
+
+range(rd)
+```
+
+```{r}
+library(pheatmap)
+
+colnames(rd) <- paste0("m",1:5)
+rownames(rd) <- paste0("m",1:5)
+pheatmap(rd)
+```
+
+```{r}
+pdb <- read.pdb("1hsg")
+```
+
+```{r}
+plotb3(pdbs$b[1,], typ="l", lwd=2, sse=pdb)
+points(pdbs$b[2,], typ="l", col="red")
+points(pdbs$b[3,], typ="l", col="blue")
+points(pdbs$b[4,], typ="l", col="darkgreen")
+points(pdbs$b[5,], typ="l", col="orange")
+abline(v=100, col="gray")
+```
+
+

@@ -1,0 +1,2 @@
+"0","countData <- read.csv(countFile, row.names=1)"
+"0","head(countData)"

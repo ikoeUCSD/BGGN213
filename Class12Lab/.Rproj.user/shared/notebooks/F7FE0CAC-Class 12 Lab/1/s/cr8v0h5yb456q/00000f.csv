@@ -1,0 +1,2 @@
+"0","up.ind <- mygenes$log2fc > 2"
+"0","down.ind <- mygenes$log2fc < (-2)"

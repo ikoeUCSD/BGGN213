@@ -1,0 +1,5 @@
+"0","res$genename <- mapIds(org.Hs.eg.db,"
+"0","                     keys=row.names(res), # Our genenames"
+"0","                     keytype=""ENSEMBL"",        # The format of our genenames"
+"0","                     column=""GENENAME"",          # The new format we want to add"
+"0","                     multiVals=""first"")"

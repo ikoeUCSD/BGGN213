@@ -1,0 +1,2 @@
+"0","counts <- read.csv(""airway_scaledcounts.csv"", row.names=1)"
+"0","metadata <-  read.csv(""airway_metadata.csv"")"

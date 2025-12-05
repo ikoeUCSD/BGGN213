@@ -1,0 +1,4 @@
+"0","dds = DESeqDataSetFromMatrix(countData=countData,"
+"0","                             colData=colData,"
+"0","                             design=~condition)"
+"0","dds = DESeq(dds)"

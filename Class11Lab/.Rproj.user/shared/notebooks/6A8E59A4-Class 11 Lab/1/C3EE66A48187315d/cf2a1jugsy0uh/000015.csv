@@ -1,0 +1,93 @@
+"1","
+"
+"1","  Binaries will be installed
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/XVector_0.49.0.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/SparseArray_1.9.1.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/S4Vectors_0.47.0.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/S4Arrays_1.9.1.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/DelayedArray_0.35.2.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/IRanges_2.43.0.zip'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/bin/windows/contrib/4.5/GenomicRanges_1.61.1.zip'
+"
+"1","package ‘XVector’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘SparseArray’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘S4Vectors’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘S4Arrays’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘DelayedArray’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘IRanges’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘GenomicRanges’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\ianmk\AppData\Local\Temp\RtmpKM1WWj\downloaded_packages"
+"1",""
+"1","
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/Seqinfo_1.0.0.tar.gz'
+"
+"2","trying URL 'https://bioconductor.org/packages/3.22/bioc/src/contrib/SummarizedExperiment_1.40.0.tar.gz'
+"
+"1","* installing *source* package 'Seqinfo' ...
+"
+"1","** this is package 'Seqinfo' version '1.0.0'
+"
+"1","** package 'Seqinfo' successfully unpacked and MD5 sums checked
+"
+"1","** using staged installation
+"
+"1","** R
+"
+"1","** inst
+"
+"1","** byte-compile and prepare package for lazy loading
+"
+"1","Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+"
+"1","  namespace 'S4Vectors' 0.47.0 is being loaded, but >= 0.47.6 is required
+"
+"1","Calls: <Anonymous> ... withCallingHandlers -> loadNamespace -> namespaceImport -> loadNamespace
+"
+"1","Execution halted
+"
+"1","ERROR: lazy loading failed for package 'Seqinfo'
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/Seqinfo'
+"
+"1","ERROR: dependency 'Seqinfo' is not available for package 'SummarizedExperiment'
+"
+"1","Perhaps try a variation of:
+"
+"1","install.packages('Seqinfo')
+"
+"1","* removing 'C:/Users/ianmk/AppData/Local/R/win-library/4.5/SummarizedExperiment'
+"
+"2","
+"
+"2",""
+"2","The downloaded source packages are in
+	‘C:\Users\ianmk\AppData\Local\Temp\RtmpKM1WWj\downloaded_packages’"
+"2",""
+"2","
+"
+"1","
+"
+"1",""
+"1","  There are binary versions available but the source versions are later"
+"1",""
+"1",":
+"
