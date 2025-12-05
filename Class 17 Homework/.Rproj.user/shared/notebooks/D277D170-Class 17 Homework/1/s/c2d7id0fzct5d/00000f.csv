@@ -1,0 +1,2 @@
+"0","data <- read.table(""rs8067378_ENSG00000172057.6.txt"")"
+"0","head(data)"

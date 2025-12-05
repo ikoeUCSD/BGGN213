@@ -1,0 +1,2 @@
+"0","to.keep <- rowSums(txi.kallisto$counts) > 0"
+"0","kset.nonzero <- txi.kallisto$counts[to.keep,]"

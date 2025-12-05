@@ -1,0 +1,2 @@
+"0","keep2 <- apply(kset.nonzero,1,sd)>0"
+"0","x <- kset.nonzero[keep2,]"

@@ -1,0 +1,27 @@
+---
+title: "Class 17 Homework"
+author: "Ian Koe"
+format: pdf
+---
+
+```{r}
+data <- read.table("rs8067378_ENSG00000172057.6.txt")
+head(data)
+
+```
+
+> Q13.
+
+```{r}
+summary(data)
+medians <- aggregate(exp ~ geno, data = data, FUN = median)
+medians
+```
+> Q14.
+
+```{r}
+library(ggplot2)
+ggplot(data, aes(x = geno, y = exp, fill = geno)) + geom_boxplot() + labs(title = "Gene Expression by Genotype (eQTL rs8067378)", x = "Genotype", y = "Expression Level") + theme_minimal() + theme(legend.position = "none")
+```
+The plot above suggests that there is reduced expression in the G|G genotype compared to the A|A genotype. Given the distributions of G|G compared to A|A, I would think that there is a reduction in expression of ORMDL3 in G|G individuals, but I have not performed a statistical test that sufficiently shows a difference between the two groups.
+

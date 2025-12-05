@@ -1,0 +1,16 @@
+---
+title: "Class 15 Lab"
+author: "Ian Koe"
+format: html
+---
+
+ls: list files and directories
+mkdir: new directory
+rm: remove files
+nano: text editor
+cp: copy a file
+mv: rename or move a file
+less: see contents of a text file
+
+Absolute path: from root
+Relative path: relative to current directory
