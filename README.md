@@ -2,7 +2,5 @@
 Classwork for [Bioinformatics Class at UC San Diego](https://bioboot.github.io/bggn213_F25/).
 
 ## Class Content
-- Class 04: R Fundamentals
-- Class 05: Data Viz with ggplot
-- Class 06: Writing R functions
-- Class 07: Machine learning for Bioinformatics
+- Class 11: [Stuff](<Class11Lab/Class 11 Lab.md>)
+- Class 12: [Other Stuff](<Class12Lab/Class 12 Lab.md>)
